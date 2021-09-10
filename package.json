@@ -1,0 +1,14 @@
+{
+  "name": "auto-scrapper",
+  "version": "1.0.0",
+  "description": "A library for automatically scraping data from webpages",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ss6sujal@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "puppeteer": "^10.2.0"
+  }
+}

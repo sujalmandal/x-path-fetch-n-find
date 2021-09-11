@@ -1,5 +1,5 @@
 {
-  "name": "x-path-find-n-find",
+  "name": "x-path-fetch-n-find",
   "version": "1.0.0",
   "description": "A library for extracting xpath from a given sample search token",
   "scripts": {

@@ -1,8 +1,8 @@
 module.exports.getXPathsByText = async(searchToken, loadedPage)=>{
-    
+    /*
     const pageTitle = await loadedPage.title();
-    console.log(pageTitle+" is loaded");
-
+    console.log(pageTitle.substring(0, length)+".. is loaded");
+    */
     const results = await loadedPage.evaluate((textToSearch) => {
         getXPathForElement = (el, xml) => {
             var xpath = '';
@@ -18,16 +18,16 @@ module.exports.getXPathsByText = async(searchToken, loadedPage)=>{
                     tempitem2 = tempitem2.previousSibling;
                 }
 
-                xpath = "*[name()='" + el.nodeName + "' and namespace-uri()='" + (el.namespaceURI === null ? '' : el.namespaceURI) + "'][" + pos + ']' + '/' + xpath;
+                xpath = "*[name()='" + el.nodeName.toLowerCase() + "' and namespace-uri()='" + (el.namespaceURI === null ? '' : el.namespaceURI) + "'][" + pos + ']' + '/' + xpath;
 
                 el = el.parentNode;
             }
-            xpath = '/*' + "[name()='" + xml.documentElement.nodeName + "' and namespace-uri()='" + (el.namespaceURI === null ? '' : el.namespaceURI) + "']" + '/' + xpath;
+            xpath = '/*' + "[name()='" + xml.documentElement.nodeName.toLowerCase() + "' and namespace-uri()='" + (el.namespaceURI === null ? '' : el.namespaceURI) + "']" + '/' + xpath;
             xpath = xpath.replace(/\/$/, '');
             return xpath;
         }
         getElementByXpath = (path) => {
-            return document.evaluate(path, document.body, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
+            return document.evaluate(path, document, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
         }
         const matches = getElementByXpath("//*[contains(text(),'" + textToSearch + "')]");
         if (matches != undefined && matches.length !== 0) {
@@ -49,12 +49,12 @@ module.exports.getXPathsByText = async(searchToken, loadedPage)=>{
 
 module.exports.getTextByXPath = async(xPath, loadedPage)=>{
 
-    const pageTitle = await loadedPage.title();
-    console.log(pageTitle+" is loaded");
+    /*const pageTitle = await loadedPage.title();
+    console.log(pageTitle.substring(0, length)+".. is loaded");*/
 
     const results = await loadedPage.evaluate((xPathToSearch) => {
         getElementByXpath = (path) => {
-            return document.evaluate(path, document.body, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
+            return document.evaluate(path, document, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
         }
         const matches = getElementByXpath(xPathToSearch);
         if (matches != undefined && matches.length !== 0) {

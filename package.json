@@ -1,7 +1,7 @@
 {
-  "name": "auto-scrapper",
+  "name": "x-path-find-n-find",
   "version": "1.0.0",
-  "description": "A library for automatically scraping data from webpages",
+  "description": "A library for extracting xpath from a given sample search token",
   "scripts": {
     "test": "mocha --timeout 15000"
   },

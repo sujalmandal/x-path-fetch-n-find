@@ -1,13 +1,10 @@
-module.exports.getXPathsByText = async(searchToken, loadedPage)=>{
-    /*
-    const pageTitle = await loadedPage.title();
-    console.log(pageTitle.substring(0, length)+".. is loaded");
-    */
+module.exports.getXPathsByText = async(searchToken, loadedPage, isDebug=false)=>{
+
     const results = await loadedPage.evaluate((textToSearch) => {
         getXPathForElement = (el, xml) => {
             var xpath = '';
             var pos, tempitem2;
-
+            console.log(el);
             while (el !== xml.documentElement) {
                 pos = 0;
                 tempitem2 = el;
@@ -18,11 +15,11 @@ module.exports.getXPathsByText = async(searchToken, loadedPage)=>{
                     tempitem2 = tempitem2.previousSibling;
                 }
 
-                xpath = "*[name()='" + el.nodeName.toLowerCase() + "' and namespace-uri()='" + (el.namespaceURI === null ? '' : el.namespaceURI) + "'][" + pos + ']' + '/' + xpath;
+                xpath = "*[name()='" + el.nodeName.toLowerCase() + "'][" + pos + ']' + '/' + xpath;
 
                 el = el.parentNode;
             }
-            xpath = '/*' + "[name()='" + xml.documentElement.nodeName.toLowerCase() + "' and namespace-uri()='" + (el.namespaceURI === null ? '' : el.namespaceURI) + "']" + '/' + xpath;
+            xpath = '/*' + "[name()='" + xml.documentElement.nodeName.toLowerCase() + "']" + '/' + xpath;
             xpath = xpath.replace(/\/$/, '');
             return xpath;
         }
@@ -47,10 +44,7 @@ module.exports.getXPathsByText = async(searchToken, loadedPage)=>{
     return results;
 }
 
-module.exports.getTextByXPath = async(xPath, loadedPage)=>{
-
-    /*const pageTitle = await loadedPage.title();
-    console.log(pageTitle.substring(0, length)+".. is loaded");*/
+module.exports.getTextByXPath = async(xPath, loadedPage, isDebug=false)=>{
 
     const results = await loadedPage.evaluate((xPathToSearch) => {
         getElementByXpath = (path) => {

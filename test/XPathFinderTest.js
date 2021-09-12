@@ -1,12 +1,12 @@
 const puppeteer = require('puppeteer');
 const assert = require('assert');
-const xPathFinder = require('./XpathFinder');
+const xPathFinder = require('../XpathFinder');
+const { it } = require('mocha');
 
 const TEST_DATASOURCE_URL = "https://example.com/"
 const TEST_SEARCH_TOKEN = "More information..."
 
-describe(TEST_DATASOURCE_URL, () => {
-        
+describe("Testing core module (XPathFinder)", () => {
         it("Find selector for : \n" + TEST_SEARCH_TOKEN + "", async () => {
                 const browser = await puppeteer.launch();
                 const page = await browser.newPage();

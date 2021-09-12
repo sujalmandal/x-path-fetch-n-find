@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A library for extracting xpath from a given sample search token",
   "scripts": {
-    "test": "mocha --timeout 15000"
+    "test": "mocha --timeout 30000"
   },
   "author": "ss6sujal@gmail.com",
   "license": "ISC",

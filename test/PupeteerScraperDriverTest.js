@@ -1,12 +1,12 @@
 const assert = require('assert');
 const { it } = require('mocha');
-const findFetch = require('../FindFetch');
+const findFetch = require('../src/PupeteerScraperDriver');
 
 describe("Testing online shopping sites..", () => {
     
     it.skip("\nAmazon.co.in\n\n", async () => {
         await findFetch.init();
-        await findFetch.find("https://www.amazon.in/dp/B077BSWLTL","₹20,999.00");
+        await findFetch.find("https://www.amazon.in/dp/B077BSWLTL","₹20,499.00");
         let fetchedText = await findFetch.fetch("https://www.amazon.in/dp/B08XB1F1RD");
         console.log("scraped data : "+fetchedText);
         assert(fetchedText.length>0,"Failed to scrape data!");

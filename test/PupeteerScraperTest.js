@@ -1,18 +1,18 @@
 const puppeteer = require('puppeteer');
 const assert = require('assert');
-const xPathFinder = require('../XpathFinder');
+const scraper = require('../src/PupeteerScraper');
 const { it } = require('mocha');
 
 const TEST_DATASOURCE_URL = "https://example.com/"
 const TEST_SEARCH_TOKEN = "More information..."
 
-describe("Testing core module (XPathFinder)", () => {
+describe("Testing core module (Pupeteer)", () => {
         it("Find selector for : \n" + TEST_SEARCH_TOKEN + "", async () => {
                 const browser = await puppeteer.launch();
                 const page = await browser.newPage();
                 await page.goto(TEST_DATASOURCE_URL);
 
-                const matches = await xPathFinder.getXPathsByText(
+                const matches = await scraper.getXPathsByText(
                         TEST_SEARCH_TOKEN,
                         page
                 );
@@ -31,7 +31,7 @@ describe("Testing core module (XPathFinder)", () => {
 
                 for(let i=0;i<matches.length;i++){
                         let match = matches[i];
-                        const searchedToken = await xPathFinder.getTextByXPath(match.xPath,page);
+                        const searchedToken = await scraper.getTextByXPath(match.xPath,page);
                         if(atleastOneSelectorMatching!=true && searchedToken==TEST_SEARCH_TOKEN){
                                 console.log("\n\n\Result no. "+(i+1)+" completely matches searched token!");
                                 atleastOneSelectorMatching=true;

@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer');
-const xPathFinder = require('./XpathFinder');
+const scraper = require('./PupeteerScraper');
 const assert = require('assert');
 
 module.exports = (()=>{
@@ -26,7 +26,7 @@ module.exports = (()=>{
             this.currentURL=urlToLoad;
             await this.pageInstance.goto(this.currentURL);
             
-            let matches = await xPathFinder.getXPathsByText(searchToken,this.pageInstance);
+            let matches = await scraper.getXPathsByText(searchToken,this.pageInstance);
             assert(matches.length>0,"No match found for the given search token!");
             
             for(let i=0;i<matches.length;i++){
@@ -42,7 +42,7 @@ module.exports = (()=>{
             assert(urlToLoad?.trim().length > 0,"Url cannot be empty.");
             this.currentURL=urlToLoad;
             await this.pageInstance.goto(this.currentURL);
-            return await xPathFinder.getTextByXPath(this.xPathString,this.pageInstance);
+            return await scraper.getTextByXPath(this.xPathString,this.pageInstance);
         },
         destroy: async()=>{
             this.browserInstance.close();

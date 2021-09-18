@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "A library for extracting xpath from a given sample search token",
   "scripts": {
+    "start": "ts-node ./src/index.ts",
     "build": "tsc",
-    "test": "mocha --timeout 30000 --recursive dist/*.test.js",
-    "start": "ts-node ./src/index.ts"
+    "test": "mocha --timeout 30000 ./dist/test/**.test.js"
   },
   "author": "ss6sujal@gmail.com",
   "license": "ISC",

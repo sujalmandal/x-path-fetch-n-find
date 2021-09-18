@@ -1,6 +1,6 @@
 import puppeteer from 'puppeteer';
 import assert from 'assert';
-import {PupeteerScraper} from '../src/PupeteerScraper';
+import {PupeteerScraper} from '../main/PupeteerScraper';
 import { it } from 'mocha';
 
 const TEST_DATASOURCE_URL = "https://example.com/"

@@ -1,6 +1,6 @@
 import assert from 'assert';
 import {it}  from 'mocha';
-import {PupeteerScraperDriver} from '../src/PupeteerScraperDriver';
+import {PupeteerScraperDriver} from '../main/PupeteerScraperDriver';
 
 describe("Testing online shopping sites..", () => {
     
